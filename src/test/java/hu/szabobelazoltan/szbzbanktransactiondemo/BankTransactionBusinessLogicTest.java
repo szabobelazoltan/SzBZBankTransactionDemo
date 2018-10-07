@@ -14,6 +14,10 @@ import hu.szabobelazoltan.szbzbanktransactiondemo.businesslogic.BankTransactionB
 import hu.szabobelazoltan.szbzbanktransactiondemo.businesslogic.BankTransactionBusinessLogicImpl;
 import hu.szabobelazoltan.szbzbanktransactiondemo.data.BankAccount;
 import hu.szabobelazoltan.szbzbanktransactiondemo.data.BankTransaction;
+import hu.szabobelazoltan.szbzbanktransactiondemo.datasources.BankAccountDataSource;
+import hu.szabobelazoltan.szbzbanktransactiondemo.datasources.BankTransactionDataSource;
+import hu.szabobelazoltan.szbzbanktransactiondemo.datasources.XmlResourceAccountDataSource;
+import hu.szabobelazoltan.szbzbanktransactiondemo.datasources.XmlResourceTransactionDataSource;
 
 public class BankTransactionBusinessLogicTest {
 
@@ -105,5 +109,23 @@ public class BankTransactionBusinessLogicTest {
 		businessLogic.process(accountMap, transactionList);
 		
 		assertEquals(expectedBalance, account.getBalance());
+	}
+	
+	private int notificationCounter = 0;
+	
+	@Test
+	public void testNotifyTenTransactions() {
+		final BankAccountDataSource accountDataSource = new XmlResourceAccountDataSource(getClass().getResourceAsStream("single_account.xml"));
+		final BankTransactionDataSource transactionDataSource = new XmlResourceTransactionDataSource(getClass().getResourceAsStream("test_transactions.xml"));
+		
+		final Map<String, BankAccount> accountMap = accountDataSource.getAccounts();
+		final List<BankTransaction> transactionList = transactionDataSource.getTransactions();
+		
+		final BankTransactionBusinessLogic businessLogic = new BankTransactionBusinessLogicImpl(
+				(x) -> { notificationCounter++; }, (x) -> {});
+		
+		businessLogic.process(accountMap, transactionList);
+		
+		assertEquals(2, notificationCounter);
 	}
 }
