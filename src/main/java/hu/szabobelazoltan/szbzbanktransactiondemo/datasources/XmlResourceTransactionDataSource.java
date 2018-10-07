@@ -1,5 +1,6 @@
 package hu.szabobelazoltan.szbzbanktransactiondemo.datasources;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,16 +12,15 @@ import hu.szabobelazoltan.szbzbanktransactiondemo.xml.XmlResourceBankDataLoader;
 
 public class XmlResourceTransactionDataSource implements BankTransactionDataSource {
 
-	private final String resourceName;
-		
-	public XmlResourceTransactionDataSource(String resourceName) {
-		super();
-		this.resourceName = resourceName;
+	private final InputStream resourceInputStream;
+	
+	public XmlResourceTransactionDataSource(InputStream resourceInputStream) {
+		this.resourceInputStream = resourceInputStream;
 	}
 
 	public List<BankTransaction> getTransactions() throws DemoApplicationException {
 		XmlResourceBankDataLoader loader = new XmlResourceBankDataLoader();
-		XmlBankTransactions xmlBankTransactions = loader.loadBankData(resourceName, XmlBankTransactions.class);
+		XmlBankTransactions xmlBankTransactions = loader.loadBankData(resourceInputStream, XmlBankTransactions.class);
 		
 		List<BankTransaction> transactions = new ArrayList<BankTransaction>();
 		

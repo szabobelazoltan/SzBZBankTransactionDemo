@@ -11,9 +11,8 @@ import hu.szabobelazoltan.szbzbanktransactiondemo.exception.DemoApplicationExcep
 
 public class XmlResourceBankDataLoader {
 	
-	public <T> T loadBankData(String resourceName, Class<T> xmlBankDataClass) throws DemoApplicationException {
+	public <T> T loadBankData(InputStream resourceInputStream, Class<T> xmlBankDataClass) throws DemoApplicationException {
 		try {
-			InputStream resourceInputStream = getClass().getResourceAsStream(resourceName);
 			JAXBContext context = JAXBContext.newInstance(xmlBankDataClass);
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 			T result = (T)unmarshaller.unmarshal(resourceInputStream);

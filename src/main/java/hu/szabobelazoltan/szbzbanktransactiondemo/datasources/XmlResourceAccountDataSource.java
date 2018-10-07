@@ -1,5 +1,6 @@
 package hu.szabobelazoltan.szbzbanktransactiondemo.datasources;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -13,15 +14,16 @@ import hu.szabobelazoltan.szbzbanktransactiondemo.xml.XmlResourceBankDataLoader;
 
 public class XmlResourceAccountDataSource implements BankAccountDataSource {
 	
-	private final String resourceName;
-		
-	public XmlResourceAccountDataSource(String resourceName) {
-		this.resourceName = resourceName;
+	private final InputStream resourceInputStream;
+	
+	public XmlResourceAccountDataSource(InputStream resourceInputStream) {
+		super();
+		this.resourceInputStream = resourceInputStream;
 	}
 
 	public Map<String, BankAccount> getAccounts() throws DemoApplicationException {
 		XmlResourceBankDataLoader loader = new XmlResourceBankDataLoader();
-		XmlBankAccounts xmlBankAccounts = loader.loadBankData(resourceName, XmlBankAccounts.class);
+		XmlBankAccounts xmlBankAccounts = loader.loadBankData(resourceInputStream, XmlBankAccounts.class);
 		
 		Map<String, BankAccount> accounts = new HashMap<String, BankAccount>();
 		

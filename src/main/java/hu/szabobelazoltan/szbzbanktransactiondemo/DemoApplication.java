@@ -16,14 +16,14 @@ import hu.szabobelazoltan.szbzbanktransactiondemo.exception.DemoApplicationExcep
 
 public class DemoApplication {
 
-	private static final String ACCOUNTS_XML_RESOURCE_NAME = "accounts.xml";
+	private static final String ACCOUNTS_XML_RESOURCE_NAME = "xml/accounts.xml";
 	
-	private static final String TRANSACTIONS_XML_RESOURCE_NAME = "transactions.xml";
+	private static final String TRANSACTIONS_XML_RESOURCE_NAME = "xml/transactions.xml";
 	
     public static void main( String[] args ) {
     	try {
-    		BankAccountDataSource bankAccountDataSource = new XmlResourceAccountDataSource(ACCOUNTS_XML_RESOURCE_NAME);
-        	BankTransactionDataSource bankTransactionDataSource = new XmlResourceTransactionDataSource(TRANSACTIONS_XML_RESOURCE_NAME);
+    		BankAccountDataSource bankAccountDataSource = new XmlResourceAccountDataSource(DemoApplication.class.getResourceAsStream(ACCOUNTS_XML_RESOURCE_NAME));
+        	BankTransactionDataSource bankTransactionDataSource = new XmlResourceTransactionDataSource(DemoApplication.class.getResourceAsStream(TRANSACTIONS_XML_RESOURCE_NAME));
         	
         	Map<String, BankAccount> accounts = bankAccountDataSource.getAccounts();
         	List<BankTransaction> transactions = bankTransactionDataSource.getTransactions();
