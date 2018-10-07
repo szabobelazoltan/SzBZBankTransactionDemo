@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<accounts>
+	<account>
+		<accountNumber>11111111-22222222</accountNumber>
+		<currency>HUF</currency>
+		<balance>150000</balance>
+	</account>
+	<account>
+		<accountNumber>22222222-33333333</accountNumber>
+		<currency>USD</currency>
+		<balance>1230</balance>
+	</account>
+</accounts>

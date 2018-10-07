@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transactions>
+	<transaction>
+		<accountNumber>11111111-22222222</accountNumber>
+		<amount>-30000</amount>
+		<currency>HUF</currency>
+		<exchangeRate></exchangeRate>
+	</transaction>
+	<transaction>
+		<accountNumber>11111111-22222222</accountNumber>
+		<amount>-49.99</amount>
+		<currency>USD</currency>
+		<exchangeRate>257.21</exchangeRate>
+	</transaction>
+	<transaction>
+		<accountNumber>22222222-33333333</accountNumber>
+		<amount>-21</amount>
+		<currency>USD</currency>
+		<exchangeRate></exchangeRate>
+	</transaction>
+	<transaction>
+		<accountNumber>22222222-33333333</accountNumber>
+		<amount>129.90</amount>
+		<currency>CAD</currency>
+		<exchangeRate>1.25</exchangeRate>
+	</transaction>
+</transactions>
