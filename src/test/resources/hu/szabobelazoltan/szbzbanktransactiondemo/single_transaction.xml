@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transactions>
+	<transaction>
+		<accountNumber>11111111-22222222</accountNumber>
+		<amount>-10000</amount>
+		<currency>HUF</currency>
+		<exchangeRate></exchangeRate>
+	</transaction>
+</transactions>
