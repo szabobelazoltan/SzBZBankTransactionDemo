@@ -12,12 +12,16 @@ import hu.szabobelazoltan.szbzbanktransactiondemo.xml.XmlBankAccounts;
 import hu.szabobelazoltan.szbzbanktransactiondemo.xml.XmlResourceBankDataLoader;
 
 public class XmlResourceAccountDataSource implements BankAccountDataSource {
-
-	private static final String XML_RESOURCE_NAME = "accounts.xml";
 	
+	private final String resourceName;
+		
+	public XmlResourceAccountDataSource(String resourceName) {
+		this.resourceName = resourceName;
+	}
+
 	public Map<String, BankAccount> getAccounts() throws DemoApplicationException {
 		XmlResourceBankDataLoader loader = new XmlResourceBankDataLoader();
-		XmlBankAccounts xmlBankAccounts = loader.loadBankData(XML_RESOURCE_NAME, XmlBankAccounts.class);
+		XmlBankAccounts xmlBankAccounts = loader.loadBankData(resourceName, XmlBankAccounts.class);
 		
 		Map<String, BankAccount> accounts = new HashMap<String, BankAccount>();
 		

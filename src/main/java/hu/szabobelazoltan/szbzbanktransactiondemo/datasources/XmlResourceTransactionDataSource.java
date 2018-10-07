@@ -11,11 +11,16 @@ import hu.szabobelazoltan.szbzbanktransactiondemo.xml.XmlResourceBankDataLoader;
 
 public class XmlResourceTransactionDataSource implements BankTransactionDataSource {
 
-	private static final String XML_RESOURCE_NAME = "transactions.xml";
-	
+	private final String resourceName;
+		
+	public XmlResourceTransactionDataSource(String resourceName) {
+		super();
+		this.resourceName = resourceName;
+	}
+
 	public List<BankTransaction> getTransactions() throws DemoApplicationException {
 		XmlResourceBankDataLoader loader = new XmlResourceBankDataLoader();
-		XmlBankTransactions xmlBankTransactions = loader.loadBankData(XML_RESOURCE_NAME, XmlBankTransactions.class);
+		XmlBankTransactions xmlBankTransactions = loader.loadBankData(resourceName, XmlBankTransactions.class);
 		
 		List<BankTransaction> transactions = new ArrayList<BankTransaction>();
 		
